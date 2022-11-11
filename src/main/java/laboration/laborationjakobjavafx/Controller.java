@@ -98,13 +98,6 @@ public class Controller {
         }
     }
 
-    private void listChanged(Observable observable) {
-        var context = canvas.getGraphicsContext2D();
-        for (Shape s : model.getShapes()) {
-            s.draw(context);
-        }
-    }
-
     public void clearCanvas() {
         context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
