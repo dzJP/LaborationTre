@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8390965-8799-413e-a7b0-e2023d8282b8" name="Changes" comment="Laboration 3 teest">
+    <list default="true" id="a8390965-8799-413e-a7b0-e2023d8282b8" name="Changes" comment="collision tester test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/laboration/laborationjakobjavafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/laboration/laborationjakobjavafx/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Circle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shapes/Shape.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668168382411</updated>
-      <workItem from="1668168383657" duration="5888000" />
+      <workItem from="1668168383657" duration="6683000" />
     </task>
     <task id="LOCAL−00001" summary="Laboration 3">
       <created>1668170231877</created>
@@ -104,7 +99,19 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1668170692748</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="collision tester test">
+      <created>1668182692547</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1668182692547</updated>
+    </task>
+    <task id="LOCAL−00004" summary="collision tester test">
+      <created>1668182713887</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1668182713887</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +131,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Laboration 3" />
     <MESSAGE value="Laboration 3 teest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Laboration 3 teest" />
+    <MESSAGE value="collision tester test" />
+    <option name="LAST_COMMIT_MESSAGE" value="collision tester test" />
   </component>
 </project>

@@ -137,26 +137,6 @@ public class Model {
     public void setCircle(boolean circle) {
         this.Circle.set(circle);
     }
-
-    public boolean isCircle() {
-        return Circle.get();
-    }
-
-    public BooleanProperty circleProperty() {
-        return Circle;
-    }
-
-    public boolean isRectangle() {
-        return Rectangle.get();
-    }
-
-    public BooleanProperty rectangleProperty() {
-        return Rectangle;
-    }
-
-    public ObservableList<Shape> getSelectedShape() {
-        return selectedShapes;
-    }
     public ObjectProperty<Color> colorSelectProperty() {
         return selectColorPicker;
     }
@@ -190,6 +170,26 @@ public class Model {
     }
     public void setSelectColorPicker(Color selectColorPicker) {
         this.selectColorPicker.set(selectColorPicker);
+    }
+
+    public boolean isCircle() {
+        return Circle.get();
+    }
+
+    public BooleanProperty circleProperty() {
+        return Circle;
+    }
+
+    public boolean isRectangle() {
+        return Rectangle.get();
+    }
+
+    public BooleanProperty rectangleProperty() {
+        return Rectangle;
+    }
+
+    public ObservableList<Shape> getSelectedShape() {
+        return selectedShapes;
     }
 }
 
