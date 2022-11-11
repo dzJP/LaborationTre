@@ -33,7 +33,7 @@
             <Button fx:id="undoButton" layoutY="63.0" mnemonicParsing="false" onAction="#undoAction" prefHeight="32.0" prefWidth="69.0" text="UNDO" />
             <ColorPicker fx:id="cp" layoutX="88.0" layoutY="46.0" prefHeight="25.0" prefWidth="134.0" />
             <Button fx:id="ChangeColor" layoutY="9.0" mnemonicParsing="false" onAction="#OnChangeColor" text="Change color" />
-            <CheckBox fx:id="selectionEditor" layoutX="69.0" layoutY="66.0" mnemonicParsing="false" onAction="#onSelectorAction" prefHeight="32.0" prefWidth="121.0" text="Select/Edit Shapes">
+            <CheckBox fx:id="selectionEditor" layoutX="69.0" layoutY="66.0" mnemonicParsing="false" onAction="#onSelectorAction" prefHeight="32.0" prefWidth="121.0" text="Select/Edit shapes">
                 <effect>
                     <Lighting>
                         <bumpInput>

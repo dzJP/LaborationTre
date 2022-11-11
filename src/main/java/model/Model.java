@@ -1,8 +1,8 @@
 package model;
 
-import Shapes.FactoryShapes;
-import Shapes.Shape;
-import Shapes.ShapeType;
+import shapes.FactoryShapes;
+import shapes.Shape;
+import shapes.ShapeType;
 import javafx.beans.Observable;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;

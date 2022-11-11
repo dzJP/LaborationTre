@@ -1,4 +1,4 @@
-package Shapes;
+package shapes;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;

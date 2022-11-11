@@ -1,8 +1,8 @@
 package laboration.laborationjakobjavafx;
 
-import Shapes.Shape;
-import Shapes.FactoryShapes;
-import Shapes.ShapeType;
+import shapes.Shape;
+import shapes.FactoryShapes;
+import shapes.ShapeType;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
