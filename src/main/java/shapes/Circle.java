@@ -2,7 +2,7 @@ package shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.Point;
+import model.Position;
 
 public class Circle extends Shape{
 
@@ -10,17 +10,12 @@ public class Circle extends Shape{
         super(color,x,y,size,type);
 
     }
-    @Override
-    public String svgFormat() {
-        return "<circle cx=\"" + centerPoint().getPosX() + "\" cy=\"" + centerPoint().getPosY() + "\" r=\"" + (getSize() / 2) +
-                "\" fill=\"#" + getColor().toString().substring(2,10) + "\" />";
-    }
 
     @Override
     public void draw (GraphicsContext context){
         context.setFill(getBorderColor());
         context.setFill(getColor());
-        context.fillOval(centerPoint().getPosX(), centerPoint().getPosY(), getSize(), getSize());
+        context.fillOval(centerPoint().getPositionX(), centerPoint().getPositionY(), getSize(), getSize());
     }
 
     @Override
@@ -52,7 +47,7 @@ public class Circle extends Shape{
     }
 
     @Override
-    public boolean isInsideShape(double mouseX, double mouseY) {
+    public boolean collision(double mouseX, double mouseY) {
         double distX = mouseX - getX();
         double distY = mouseY - getY();
         double distance = Math.sqrt((distX * distX) + (distY * distY));
@@ -61,9 +56,9 @@ public class Circle extends Shape{
     }
 
     @Override
-    public boolean pointInsideShape(Point point) {
-        boolean xInside = point.getPosX() >= centerPoint().getPosX() && point.getPosX() <= centerPoint().getPosX() + getSize();
-        boolean yInside = point.getPosY() >= centerPoint().getPosY() && point.getPosY() <= centerPoint().getPosY() + getSize();
+    public boolean pointInsideShape(Position position) {
+        boolean xInside = position.getPositionX() >= centerPoint().getPositionX() && position.getPositionX() <= centerPoint().getPositionX() + getSize();
+        boolean yInside = position.getPositionY() >= centerPoint().getPositionY() && position.getPositionY() <= centerPoint().getPositionY() + getSize();
         return xInside && yInside;
     }
 }

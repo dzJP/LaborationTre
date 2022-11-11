@@ -2,7 +2,7 @@ package shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.Point;
+import model.Position;
 
 public class Rectangle extends Shape{
 
@@ -12,7 +12,7 @@ public class Rectangle extends Shape{
     }
 
     public String svgFormat() {
-        return "<rectangle cx=\"" + centerPoint().getPosX() + "\" cy=\"" + centerPoint().getPosY() + "\" r=\"" + (getSize() / 2) +
+        return "<rectangle cx=\"" + centerPoint().getPositionX() + "\" cy=\"" + centerPoint().getPositionY() + "\" r=\"" + (getSize() / 2) +
                 "\" fill=\"#" + getColor().toString().substring(2) + "\" />";
     }
 
@@ -20,7 +20,7 @@ public class Rectangle extends Shape{
     public void draw (GraphicsContext context){
         context.setFill(getBorderColor());
         context.setFill(getColor());
-        context.fillRect(centerPoint().getPosX(), centerPoint().getPosY(), getSize(), getSize() /2 * 1.75);
+        context.fillRect(centerPoint().getPositionX(), centerPoint().getPositionY(), getSize(), getSize() /2 * 1.75);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public boolean isInsideShape(double mouseX, double mouseY) {
+    public boolean collision(double mouseX, double mouseY) {
         double distX = mouseX - getX();
         double distY = mouseY - getY();
         double distance = Math.sqrt((distX * distX) + (distY * distY));
@@ -59,9 +59,9 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public boolean pointInsideShape(Point point) {
-        boolean xInside = point.getPosX() >= centerPoint().getPosX() && point.getPosX() <= centerPoint().getPosX() + getSize();
-        boolean yInside = point.getPosY() >= centerPoint().getPosY() && point.getPosY() <= centerPoint().getPosY() + getSize();
+    public boolean pointInsideShape(Position position) {
+        boolean xInside = position.getPositionX() >= centerPoint().getPositionX() && position.getPositionX() <= centerPoint().getPositionX() + getSize();
+        boolean yInside = position.getPositionY() >= centerPoint().getPositionY() && position.getPositionY() <= centerPoint().getPositionY() + getSize();
         return xInside && yInside;
     }
 }

@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.Point;
+import model.Position;
 
 import java.util.Objects;
 
@@ -30,10 +30,10 @@ public abstract class Shape {
         this.shape = shape;
     }
 
-    public Point centerPoint(){
+    public Position centerPoint(){
         var centerX = getX() - getSize() / 2;
         var centerY = getY() - getSize() / 2;
-        return new Point(centerX, centerY);
+        return new Position(centerX, centerY);
     }
 
     public double getY() {
@@ -80,23 +80,16 @@ public abstract class Shape {
         return color;
     }
 
-    public SimpleObjectProperty<Color> borderColorProperty() {
-        return borderColor;
-    }
-
-    public abstract String svgFormat();
-
     public void draw(GraphicsContext context){
 
     }
-
     public abstract Shape copyOf();
 
     public abstract boolean insideShape(double x, double y);
 
-    public abstract boolean isInsideShape(double mouseX, double mouseY);
+    public abstract boolean collision(double mouseX, double mouseY);
 
-    public abstract boolean pointInsideShape(Point point);
+    public abstract boolean pointInsideShape(Position position);
 
     @Override
     public boolean equals(Object o) {

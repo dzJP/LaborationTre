@@ -1,5 +1,6 @@
 package laboration.laborationjakobjavafx;
 
+import javafx.beans.Observable;
 import shapes.Shape;
 import shapes.FactoryShapes;
 import shapes.ShapeType;
@@ -32,7 +33,6 @@ import java.io.IOException;
 public class Controller {
     final static int CANVAS_WIDTH = 800;
     final static int CANVAS_HEIGHT = 800;
-
     @FXML
     private final Model model;
     @FXML
@@ -42,23 +42,27 @@ public class Controller {
     @FXML
     private final BooleanProperty selectOption;
     @FXML
-    public BooleanProperty circle;
-    @FXML
-    public BooleanProperty rectangle;
+    private ColorPicker cp;
     @FXML
     private TextField changeShapeSize;
     @FXML
-    private ColorPicker cp;
-
-
+    private Text status;
+    @FXML
     public Button circleButton;
+    @FXML
     public Button rectangleButton;
-    public FactoryShapes factory;
+    @FXML
     public Button pointer;
-    public CheckBox selectionEditor;
+    @FXML
     public Button undoButton;
-    public Text status;
-
+    @FXML
+    public CheckBox selectionEditor;
+    @FXML
+    public FactoryShapes factory;
+    @FXML
+    public BooleanProperty circle;
+    @FXML
+    public BooleanProperty rectangle;
 
     public Controller() {
         this.rectangle = new SimpleBooleanProperty();
@@ -88,9 +92,16 @@ public class Controller {
         double x = e.getX();
         double y = e.getY();
         if (model.isSelectOption()) {
-            model.checkIfInsideShape(x, y);
+            model.collisionCheck(x, y);
         } else {
             selectOrCreateShape(x, y);
+        }
+    }
+
+    private void listChanged(Observable observable) {
+        var context = canvas.getGraphicsContext2D();
+        for (Shape s : model.getShapes()) {
+            s.draw(context);
         }
     }
 
@@ -127,7 +138,7 @@ public class Controller {
 
     private void selectOrCreateShape(double x, double y) {
         if (selectOption.get())
-            model.checkIfInsideShape(x, y);
+            model.collisionCheck(x, y);
         else
             createAndAddNewShape(x, y);
     }
