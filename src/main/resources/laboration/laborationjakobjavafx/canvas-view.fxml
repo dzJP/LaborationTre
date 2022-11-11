@@ -22,6 +22,7 @@
             </menus>
         </MenuBar>
         <HBox prefHeight="55.0" prefWidth="747.0">
+            <Button fx:id="clearCanvasButton" mnemonicParsing="false" onAction="#onClearCanvasClick" text="Clear Canvas"/>
             <Button fx:id="circleButton" mnemonicParsing="false" onAction="#onCircleClick" text="Circle" />
             <Button fx:id="rectangleButton" graphicTextGap="10.0" mnemonicParsing="false" onAction="#actionRectangle" text="Rectangle" />
             <Button fx:id="pointer" mnemonicParsing="false" onAction="#onPointSelection" prefHeight="27.0" prefWidth="89.0" text="Pointer" />

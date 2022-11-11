@@ -56,6 +56,8 @@ public class Controller {
     @FXML
     public Button undoButton;
     @FXML
+    public Button clearCanvasButton;
+    @FXML
     public CheckBox selectionEditor;
     @FXML
     public FactoryShapes factory;
@@ -71,7 +73,6 @@ public class Controller {
         this.changeShapeSize = new TextField();
         this.model = new Model();
         this.factory = new FactoryShapes();
-
     }
 
     public void init(Stage stage) {
@@ -100,6 +101,11 @@ public class Controller {
 
     public void clearCanvas() {
         context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+    public void onClearCanvasClick(ActionEvent event) {
+        if (event.getSource().equals(clearCanvasButton)) {
+            clearCanvas();
+        }
     }
 
     private void drawShapes(GraphicsContext context) {
@@ -182,4 +188,6 @@ public class Controller {
     public void OnChangeColor() {
         model.changeColorOnShape();
     }
+
+
 }
