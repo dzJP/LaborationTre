@@ -1,9 +1,7 @@
 # LaborationTre
 
-*****************************************************************************************************************
-
-***** Info *****
-Java 17/19 SDK.
+Info.
+Java 17/19 SDK + Maven library.
 
 Kör programmet från Application.
 FilSparning sker via SwingFX Snapshot.
