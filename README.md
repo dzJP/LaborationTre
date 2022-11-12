@@ -1,27 +1,21 @@
 # LaborationTre
 
-*****************************************************************************************************************
+Info.
 
-***** Info *****
-Java 17/19 SDK.
+
+Java 17/19 SDK + Maven library.
 
 Kör programmet från Application.
-FilSparning sker via SwingFX Snapshot.
-Vill du spara till fil så behöver du använda SwingFX dependency/module. 
+Filsparning sker via SwingFX Snapshot. (Kräver SwingFX dependency && module)
 
 För att edita shapes, tryck på Select Mode. Välj color/size, klicka på canvas och sedan på Change Color/Size.
 
 
 
-
-
-
-// TODO: Bättre collision detection och bättre hantering på onButtonClicks
-
-
 *****************************************************************************************************************
 
 
 
+![asdasd](https://user-images.githubusercontent.com/113700179/201496381-6aac4cce-8189-4981-ba60-abc12a4117d5.png)
 
-![aasdasd](https://user-images.githubusercontent.com/113700179/201470598-fbd1a17b-db43-42c9-8c1a-742a8537e9dc.png)
+
