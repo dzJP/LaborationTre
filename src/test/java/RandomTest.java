@@ -1,10 +1,8 @@
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import org.junit.jupiter.api.*;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ExampleTest {
+public class RandomTest {
 
     @Test
     void shouldShowSimpleAssertion() {
