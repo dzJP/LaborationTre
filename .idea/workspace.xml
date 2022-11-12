@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8390965-8799-413e-a7b0-e2023d8282b8" name="Changes" comment="Added Test examples">
+    <list default="true" id="a8390965-8799-413e-a7b0-e2023d8282b8" name="Changes" comment="Resize snapshot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/laboration/laborationjakobjavafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/laboration/laborationjakobjavafx/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/laboration/laborationjakobjavafx/canvas-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/laboration/laborationjakobjavafx/canvas-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +123,7 @@
       <workItem from="1668200575034" duration="2049000" />
       <workItem from="1668202799936" duration="1450000" />
       <workItem from="1668240318970" duration="4655000" />
-      <workItem from="1668245437409" duration="4290000" />
+      <workItem from="1668245437409" duration="5055000" />
     </task>
     <task id="LOCAL−00001" summary="Laboration 3">
       <created>1668170231877</created>
@@ -185,7 +185,13 @@
       <option name="presentableId" value="LOCAL−00010" />
       <updated>1668248198512</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL−00011" summary="Resize snapshot">
+      <created>1668249751063</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1668249751063</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +215,7 @@
     <MESSAGE value="asd" />
     <MESSAGE value="new asd lol" />
     <MESSAGE value="Added Test examples" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Test examples" />
+    <MESSAGE value="Resize snapshot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resize snapshot" />
   </component>
 </project>

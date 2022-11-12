@@ -65,7 +65,7 @@ public class Model {
                 shape.yProperty(),
                 shape.sizeProperty()
         });
-        this.sizeSelect = new SimpleStringProperty("50");
+        this.sizeSelect = new SimpleStringProperty("30");
 
     }
     public void clearSelectedShapes(){
@@ -108,9 +108,9 @@ public class Model {
     public void updateUndoList() {
         List<Shape> tempList = new ArrayList<>();
         undoList.add(tempList);
-        copyToTempList(tempList);
+        addToTemporaryList(tempList);
     }
-    private void copyToTempList(List<Shape> tempList) {
+    private void addToTemporaryList(List<Shape> tempList) {
         shapeObservableList.forEach(shape -> tempList.add(shape.copyOf()));
     }
     public void addToShapes(Shape shape){
