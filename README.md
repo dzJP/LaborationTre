@@ -16,5 +16,6 @@ För att edita shapes, tryck på Select Mode. Välj color/size, klicka på canva
 
 
 
-![asdasd](https://user-images.githubusercontent.com/113700179/201496244-5f0bcadf-4d35-4812-be98-9d6b6c6ca15c.png)
+![asdasd](https://user-images.githubusercontent.com/113700179/201496381-6aac4cce-8189-4981-ba60-abc12a4117d5.png)
+
 
