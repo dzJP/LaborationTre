@@ -5,4 +5,8 @@ Vill du spara till fil så behöver du använda SwingFX dependency. (du kan beh�
 
 
 
-För att ändra size och color på shapes, gå in i selectmode, välj color/size, klicka på canvas, och sedan välj change color/size
+***** Info *****
+
+För att edita shapes, tryck på Select Mode. Välj color/size, klicka på canvas och sedan på Change Color/Size
+
+
