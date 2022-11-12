@@ -1,6 +1,6 @@
 package model;
 
-import shapes.BaseFactory;
+import shapes.Base;
 import shapes.Shape;
 import shapes.ShapeType;
 import javafx.beans.Observable;
@@ -46,7 +46,7 @@ public class Model {
     }
 
     public void createShapeToList(ShapeType type) {
-        Shape shape = BaseFactory.createShape(type, selectColorPicker.get(), position.getPositionX(), position.getPositionY(),getSizeText());
+        Shape shape = Base.createShape(type, selectColorPicker.get(), position.getPositionX(), position.getPositionY(),getSizeText());
         shapeObservableList.add(shape);
     }
 

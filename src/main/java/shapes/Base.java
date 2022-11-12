@@ -3,7 +3,7 @@ package shapes;
 import javafx.scene.paint.Color;
 
 
-public class BaseFactory {
+public class Base {
     public static Rectangle rect(Color color, double x, double y, double size){
         return new Rectangle(color,x,y,size,ShapeType.RECTANGLE);
     }

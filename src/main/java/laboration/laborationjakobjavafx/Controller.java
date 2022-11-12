@@ -1,8 +1,9 @@
 package laboration.laborationjakobjavafx;
 
 import javafx.scene.control.*;
+import shapes.Circle;
 import shapes.Shape;
-import shapes.BaseFactory;
+import shapes.Base;
 import shapes.ShapeType;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -25,6 +26,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Controller {
     final static int CANVAS_WIDTH = 800;
@@ -61,7 +63,7 @@ public class Controller {
     @FXML
     public CheckBox selectionEditor;
     @FXML
-    public BaseFactory baseFactory;
+    public Base base;
     @FXML
     public BooleanProperty circle;
     @FXML
@@ -73,7 +75,7 @@ public class Controller {
         this.selectOption = new SimpleBooleanProperty();
         this.changeShapeSize = new TextField();
         this.model = new Model();
-        this.baseFactory = new BaseFactory();
+        this.base = new Base();
     }
 
     public void init(Stage stage) {
@@ -84,8 +86,8 @@ public class Controller {
         selectOption.bindBidirectional(model.selectOptionProperty());
         model.getShapeObservableList().addListener((ListChangeListener<Shape>) e -> drawShapes(context));
         model.updateUndoList();
-
     }
+
 
     @FXML
     public void handleClickSave() {
@@ -147,7 +149,7 @@ public class Controller {
     }
 
     private Shape returnNewShape(ShapeType type, Color colorPick, double x, double y, double size) {
-        return BaseFactory.createShape(type, colorPick, x, y, size);
+        return Base.createShape(type, colorPick, x, y, size);
     }
 
     public void actionExit(ActionEvent event) {
