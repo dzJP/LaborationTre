@@ -1,5 +1,6 @@
 package shapes;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,13 +10,13 @@ import model.Position;
 import java.util.Objects;
 
 public abstract class Shape {
-
     private final SimpleDoubleProperty y =  new SimpleDoubleProperty();
     private final SimpleDoubleProperty x = new SimpleDoubleProperty();
     private final SimpleDoubleProperty size = new SimpleDoubleProperty();
     private final SimpleObjectProperty<Color> color = new SimpleObjectProperty();
     private final SimpleObjectProperty<Color> borderColor = new SimpleObjectProperty<>();
     private final ShapeType shape;
+    public abstract Shape copyList();
 
     public ShapeType getShape(){
         return shape;
@@ -36,8 +37,8 @@ public abstract class Shape {
         return new Position(centerX, centerY);
     }
 
-    public void draw(GraphicsContext context){
 
+    public void draw(GraphicsContext context) {
     }
 
     public double getY() {
@@ -71,6 +72,7 @@ public abstract class Shape {
     public void setBorderColor(Color borderColor) {
         this.borderColor.set(borderColor);
     }
+
     public SimpleDoubleProperty yProperty() {
         return y;
     }
@@ -84,9 +86,7 @@ public abstract class Shape {
         return color;
     }
 
-    public abstract Shape copyOf();
-
-    public abstract boolean collision(double mouseX, double mouseY);
+    public abstract boolean collisionCheck(double mouseX, double mouseY);
     public abstract boolean insideShape(Position position);
     public abstract boolean insideShape(double x, double y);
 

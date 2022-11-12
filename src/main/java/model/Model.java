@@ -8,47 +8,23 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
+
+    private final ObservableList<Shape> shapeObservableList;
+    private final ObservableList<Shape> selectedShapes;
+    public final List<List<Shape>> reversedList = new ArrayList<>();
+    private final ObjectProperty<Color> selectColorPicker;
+    private final ObjectProperty<Color> borderColor;
+    private ShapeType shapeType = ShapeType.CIRCLE;
+    private final StringProperty sizeSelect;
+    private final List<Integer> changeList;
+    private final BooleanProperty selectionChoice;
     private final BooleanProperty Circle;
     private final BooleanProperty Rectangle;
     private Position position;
-    private final ObservableList<Shape> shapeObservableList;
-    private final ObservableList<Shape> selectedShapes;
-    public final List<List<Shape>> undoList = new ArrayList<>();
-
-    private final ObjectProperty<Color> selectColorPicker;
-    private final ObjectProperty<Color> borderColor;
-    private final StringProperty sizeSelect;
-    private final List<Integer> changeList;
-
-    private final BooleanProperty selectOption;
-    private ShapeType shapeType = ShapeType.CIRCLE;
-
-
-
-    public ShapeType getShapeType() {
-        return shapeType;
-    }
-
-    public void setPoint(double mousePointX, double mousePointY) {
-        this.position = new Position(mousePointX, mousePointY);
-    }
-
-    public void changeSizeOnSelectedShape (){
-        updateUndoList();
-        for(var shape : selectedShapes) {
-            shape.setSize(getSizeText());
-        }
-    }
-
-    public void createShapeToList(ShapeType type) {
-        Shape shape = Base.createShape(type, selectColorPicker.get(), position.getPositionX(), position.getPositionY(),getSizeText());
-        shapeObservableList.add(shape);
-    }
 
     public Model() {
         this.selectColorPicker = new SimpleObjectProperty<>(Color.BLACK);
@@ -57,7 +33,7 @@ public class Model {
         this.Circle = new SimpleBooleanProperty(false);
         this.selectedShapes = FXCollections.observableArrayList();
         this.changeList = new ArrayList<>();
-        this.selectOption = new SimpleBooleanProperty();
+        this.selectionChoice = new SimpleBooleanProperty();
         this.Rectangle = new SimpleBooleanProperty(false);
         this.shapeObservableList = FXCollections.observableArrayList(shape -> new Observable[]{
                 shape.colorProperty(),
@@ -68,19 +44,27 @@ public class Model {
         this.sizeSelect = new SimpleStringProperty("30");
 
     }
-    public void clearSelectedShapes(){
+
+    public void collisionCheck(double x, double y) {
+        for (var shape : shapeObservableList) {
+            if (shape.collisionCheck(x,y))
+                System.out.println("Collision check");
+            selectedShapesContains(shape);
+        }
+    }
+
+    public void changeSizeSelected(){
+        updateReversedList();
+        for(var shape : selectedShapes) {
+            shape.setSize(getSizeText());
+        }
+    }
+
+    public void clearSelected(){
         for(var shape : shapeObservableList){
             shape.setBorderColor(Color.YELLOW);
         }
         selectedShapes.clear();
-    }
-
-    public void collisionCheck(double x, double y) {
-        for (var shape : shapeObservableList) {
-            if (shape.collision(x,y))
-                System.out.println("Collision!");
-            selectedShapesContains(shape);
-        }
     }
     public void selectedShapesContains(Shape selectedShape) {
         if (selectedShapes.contains(selectedShape)) {
@@ -92,51 +76,52 @@ public class Model {
         }
     }
     public void revertLatest(){
-        if(undoList.isEmpty())
+        if(reversedList.isEmpty())
             return;
         revertListChange();
     }
 
     public void revertListChange(){
         shapeObservableList.clear();
-        for (var shape : undoList.get(undoList.size() - 1))
-            shapeObservableList.add(shape.copyOf());
-        if(undoList.size() > 1){
-            undoList.remove(undoList.size() - 1);
+        for (var shape : reversedList.get(reversedList.size() - 1))
+            shapeObservableList.add(shape.copyList());
+        if(reversedList.size() > 1){
+            reversedList.remove(reversedList.size() - 1);
         }
     }
-    public void updateUndoList() {
+    public void updateReversedList() {
         List<Shape> tempList = new ArrayList<>();
-        undoList.add(tempList);
+        reversedList.add(tempList);
         addToTemporaryList(tempList);
     }
     private void addToTemporaryList(List<Shape> tempList) {
-        shapeObservableList.forEach(shape -> tempList.add(shape.copyOf()));
+        shapeObservableList.forEach(shape -> tempList.add(shape.copyList()));
     }
     public void addToShapes(Shape shape){
         if(!(shape == null))
             this.shapeObservableList.add(shape);
     }
     public void changeColorOnShape(){
-        updateUndoList();
-
+        updateReversedList();
         for(var shape : selectedShapes){
             shape.setColor(getSelectColorPicker());
         }
     }
 
+    public ShapeType getShapeType() {
+        return shapeType;
+    }
+
     public void setCircle(){
         shapeType = ShapeType.CIRCLE;
-        setSelectOption(false);
+        setSelectionChoice(false);
     }
 
     public void setRectangle(){
         shapeType = ShapeType.RECTANGLE;
-        setSelectOption(false);
+        setSelectionChoice(false);
     }
-    public void setCircle(boolean circle) {
-        this.Circle.set(circle);
-    }
+
     public ObjectProperty<Color> colorSelectProperty() {
         return selectColorPicker;
     }
@@ -150,19 +135,31 @@ public class Model {
         return Double.parseDouble(sizeSelect.getValue());
     }
 
-    public BooleanProperty selectOptionProperty() {
-        return selectOption;
+    public BooleanProperty selectionChoiceProperty() {
+        return selectionChoice;
     }
-    public boolean isSelectOption() {
-        return selectOption.get();
+    public boolean getSelectionChoice() {
+        return selectionChoice.get();
     }
 
-    public void setSelectOption(boolean selectOption) {
-        this.selectOption.set(selectOption);
+    public void setSelectionChoice(boolean selectionChoice) {
+        this.selectionChoice.set(selectionChoice);
     }
 
     public Color getSelectColorPicker() {
         return selectColorPicker.get();
+    }
+    public void setPoint(double mousePointX, double mousePointY) {
+        this.position = new Position(mousePointX, mousePointY);
+    }
+
+    public void createShapeToList(ShapeType type) {
+        Shape shape = Base.createShape(type, selectColorPicker.get(), position.getPositionX(), position.getPositionY(),getSizeText());
+        shapeObservableList.add(shape);
+    }
+
+    public void setCircle(boolean circle) {
+        this.Circle.set(circle);
     }
 
     public ObjectProperty<Color> selectColorPickerProperty() {

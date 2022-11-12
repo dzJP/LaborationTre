@@ -24,7 +24,7 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public Shape copyOf (){
+    public Shape copyList(){
         return new Rectangle(getColor(), getX(),getY(),getSize(),getShape());
     }
 
@@ -50,7 +50,7 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public boolean collision(double mouseX, double mouseY) {
+    public boolean collisionCheck(double mouseX, double mouseY) {
         double distX = mouseX - getX();
         double distY = mouseY - getY();
         double distance = Math.sqrt((distX * distX) + (distY * distY));

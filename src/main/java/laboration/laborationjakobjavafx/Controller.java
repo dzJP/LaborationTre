@@ -1,7 +1,6 @@
 package laboration.laborationjakobjavafx;
 
 import javafx.scene.control.*;
-import shapes.Circle;
 import shapes.Shape;
 import shapes.Base;
 import shapes.ShapeType;
@@ -26,7 +25,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Controller {
     final static int CANVAS_WIDTH = 800;
@@ -81,11 +79,11 @@ public class Controller {
     public void init(Stage stage) {
         context = canvas.getGraphicsContext2D();
         cp.valueProperty().bindBidirectional(model.colorSelectProperty());
-        selectionEditor.selectedProperty().bindBidirectional(model.selectOptionProperty());
+        selectionEditor.selectedProperty().bindBidirectional(model.selectionChoiceProperty());
         changeShapeSize.textProperty().bindBidirectional(model.sizeSelectProperty());
-        selectOption.bindBidirectional(model.selectOptionProperty());
+        selectOption.bindBidirectional(model.selectionChoiceProperty());
         model.getShapeObservableList().addListener((ListChangeListener<Shape>) e -> drawShapes(context));
-        model.updateUndoList();
+        model.updateReversedList();
     }
 
 
@@ -121,8 +119,7 @@ public class Controller {
     public void onCanvasClicked(MouseEvent e) {
         double x = e.getX();
         double y = e.getY();
-        System.out.println("Clicked on Canvas");
-        if (model.isSelectOption()) {
+        if (model.getSelectionChoice()) {
             model.collisionCheck(x, y);
         } else {
             selectOrCreateShape(x, y);
@@ -165,7 +162,7 @@ public class Controller {
     }
 
     public void onSelectClick() {
-        model.setSelectOption(true);
+        model.setSelectionChoice(true);
         System.out.println("Entered Select Mode");
     }
 
@@ -179,22 +176,23 @@ public class Controller {
     private void addNewCreatedShape(double x, double y) {
         var newShape = returnNewShape(model.getShapeType(), cp.getValue(), x, y, model.getSizeText());
         model.addToShapes(newShape);
-        model.updateUndoList();
+        model.updateReversedList();
     }
 
-    public void undoAction() {
+    public void revertEvent() {
         model.revertLatest();
         System.out.println("Clicked on Undo button");
     }
     public void onChangeSize() {
-        model.changeSizeOnSelectedShape();
+        model.changeSizeSelected();
     }
 
     public void onSelectMode() {
-        model.clearSelectedShapes();
+        model.clearSelected();
     }
 
     public void onChangeColor() {
         model.changeColorOnShape();
     }
+
 }
