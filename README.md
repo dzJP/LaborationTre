@@ -13,12 +13,6 @@ För att edita shapes, tryck på Select Mode. Välj color/size, klicka på canva
 
 
 
-
-
-
-// TODO: Bättre collision detection och bättre hantering på onButtonClicks
-
-
 *****************************************************************************************************************
 
 
