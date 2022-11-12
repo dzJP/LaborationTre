@@ -6,7 +6,7 @@ Info.
 Java 17/19 SDK + Maven library.
 
 Kör programmet från Application.
-FilSparning sker via SwingFX Snapshot.
+Filsparning sker via SwingFX Snapshot. (Kräver SwingFX dependency && module)
 Vill du spara till fil så behöver du använda SwingFX dependency/module. 
 
 För att edita shapes, tryck på Select Mode. Välj color/size, klicka på canvas och sedan på Change Color/Size.
