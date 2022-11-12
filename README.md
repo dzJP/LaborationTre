@@ -11,19 +11,15 @@ Vill du spara till fil så behöver du använda SwingFX dependency/module.
 
 För att edita shapes, tryck på Select Mode. Välj color/size, klicka på canvas och sedan på Change Color/Size.
 
+
+
+
+
+
 // TODO: Bättre collision detection och bättre hantering på onButtonClicks
 
 
 *****************************************************************************************************************
-
-
-
-
-*****************************************************************************************************************
-
-
-
-
 
 
 
