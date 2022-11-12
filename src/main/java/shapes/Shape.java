@@ -36,6 +36,10 @@ public abstract class Shape {
         return new Position(centerX, centerY);
     }
 
+    public void draw(GraphicsContext context){
+
+    }
+
     public double getY() {
         return y.get();
     }
@@ -80,16 +84,11 @@ public abstract class Shape {
         return color;
     }
 
-    public void draw(GraphicsContext context){
-
-    }
     public abstract Shape copyOf();
 
-    public abstract boolean insideShape(double x, double y);
-
     public abstract boolean collision(double mouseX, double mouseY);
-
-    public abstract boolean pointInsideShape(Position position);
+    public abstract boolean insideShape(Position position);
+    public abstract boolean insideShape(double x, double y);
 
     @Override
     public boolean equals(Object o) {

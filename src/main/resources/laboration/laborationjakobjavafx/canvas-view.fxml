@@ -45,7 +45,7 @@
                     </Lighting>
                 </effect>
             </CheckBox>
-            <Button fx:id="ChangeColor" layoutX="103.0" layoutY="57.0" mnemonicParsing="false" onAction="#onChangeColor" prefHeight="32.0" prefWidth="89.0" text="Change color" />
+            <Button fx:id="changeColor" layoutX="103.0" layoutY="57.0" mnemonicParsing="false" onAction="#onChangeColor" prefHeight="32.0" prefWidth="89.0" text="Change color" />
             <Button fx:id="selectMode" layoutY="1.0" mnemonicParsing="false" onAction="#onSelectClick" prefHeight="27.0" prefWidth="103.0" text="Select Mode" />
         </children>
     </Pane>

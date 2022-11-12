@@ -83,7 +83,7 @@ public class Controller {
         changeShapeSize.textProperty().bindBidirectional(model.sizeSelectProperty());
         selectOption.bindBidirectional(model.selectOptionProperty());
         model.getShapeObservableList().addListener((ListChangeListener<Shape>) e -> drawShapes(context));
-        model.addChangesToUndoList();
+        model.updateUndoList();
 
     }
 
@@ -177,11 +177,11 @@ public class Controller {
     private void addNewCreatedShape(double x, double y) {
         var newShape = returnNewShape(model.getShapeType(), cp.getValue(), x, y, model.getSizeText());
         model.addToShapes(newShape);
-        model.addChangesToUndoList();
+        model.updateUndoList();
     }
 
     public void undoAction() {
-        model.undoLatestChange();
+        model.revertLatest();
         System.out.println("Clicked on Undo button");
     }
     public void onChangeSize() {

@@ -39,7 +39,7 @@ public class Model {
     }
 
     public void changeSizeOnSelectedShape (){
-        addChangesToUndoList();
+        updateUndoList();
         for(var shape : selectedShapes) {
             shape.setSize(getSizeText());
         }
@@ -91,13 +91,13 @@ public class Model {
             selectedShapes.add(selectedShape);
         }
     }
-    public void undoLatestChange(){
+    public void revertLatest(){
         if(undoList.isEmpty())
             return;
-        undoListChange();
+        revertListChange();
     }
 
-    public void undoListChange (){
+    public void revertListChange(){
         shapeObservableList.clear();
         for (var shape : undoList.get(undoList.size() - 1))
             shapeObservableList.add(shape.copyOf());
@@ -105,7 +105,7 @@ public class Model {
             undoList.remove(undoList.size() - 1);
         }
     }
-    public void addChangesToUndoList() {
+    public void updateUndoList() {
         List<Shape> tempList = new ArrayList<>();
         undoList.add(tempList);
         copyToTempList(tempList);
@@ -118,7 +118,7 @@ public class Model {
             this.shapeObservableList.add(shape);
     }
     public void changeColorOnShape(){
-        addChangesToUndoList();
+        updateUndoList();
 
         for(var shape : selectedShapes){
             shape.setColor(getSelectColorPicker());

@@ -59,7 +59,7 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public boolean pointInsideShape(Position position) {
+    public boolean insideShape(Position position) {
         boolean xInside = position.getPositionX() >= centerPoint().getPositionX() && position.getPositionX() <= centerPoint().getPositionX() + getSize();
         boolean yInside = position.getPositionY() >= centerPoint().getPositionY() && position.getPositionY() <= centerPoint().getPositionY() + getSize();
         return xInside && yInside;
