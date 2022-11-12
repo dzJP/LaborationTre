@@ -1,8 +1,8 @@
 package laboration.laborationjakobjavafx;
 
-import javafx.beans.Observable;
+import javafx.scene.control.*;
 import shapes.Shape;
-import shapes.FactoryShapes;
+import shapes.BaseFactory;
 import shapes.ShapeType;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -13,10 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.TextField;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -33,8 +29,13 @@ import java.io.IOException;
 public class Controller {
     final static int CANVAS_WIDTH = 800;
     final static int CANVAS_HEIGHT = 800;
+
     @FXML
     private final Model model;
+    @FXML
+    public MenuItem exitOption;
+    @FXML
+    public MenuItem SaveOption;
     @FXML
     private Canvas canvas;
     @FXML
@@ -52,15 +53,15 @@ public class Controller {
     @FXML
     public Button rectangleButton;
     @FXML
-    public Button pointer;
+    public Button selectMode;
     @FXML
     public Button undoButton;
     @FXML
-    public Button clearCanvasButton;
+    private Button clearCanvasButton;
     @FXML
     public CheckBox selectionEditor;
     @FXML
-    public FactoryShapes factory;
+    public BaseFactory baseFactory;
     @FXML
     public BooleanProperty circle;
     @FXML
@@ -72,7 +73,7 @@ public class Controller {
         this.selectOption = new SimpleBooleanProperty();
         this.changeShapeSize = new TextField();
         this.model = new Model();
-        this.factory = new FactoryShapes();
+        this.baseFactory = new BaseFactory();
     }
 
     public void init(Stage stage) {
@@ -83,73 +84,7 @@ public class Controller {
         selectOption.bindBidirectional(model.selectOptionProperty());
         model.getShapeObservableList().addListener((ListChangeListener<Shape>) e -> drawShapes(context));
         model.addChangesToUndoList();
-    }
 
-    public void displayPosition(MouseEvent event) {
-        status.setText("X = " + event.getSceneX() + ". Y = " + event.getSceneY() + ".");
-    }
-
-    public void onCanvasClicked(MouseEvent e) {
-        double x = e.getX();
-        double y = e.getY();
-        if (model.isSelectOption()) {
-            model.collisionCheck(x, y);
-        } else {
-            selectOrCreateShape(x, y);
-        }
-    }
-
-    public void clearCanvas() {
-        context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    }
-    public void onClearCanvasClick(ActionEvent event) {
-        if (event.getSource().equals(clearCanvasButton)) {
-            clearCanvas();
-        }
-    }
-
-    private void drawShapes(GraphicsContext context) {
-        clearCanvas();
-        for (var shape : model.getShapeObservableList()) {
-            shape.draw(context);
-        }
-    }
-
-    private Shape returnNewShape(ShapeType type, Color colorPick, double x, double y, double size) {
-        return FactoryShapes.createShape(type, colorPick, x, y, size);
-    }
-
-    public void actionExit(ActionEvent event) {
-        Platform.exit();
-    }
-
-    public void actionRectangle() {
-        model.setRectangle();
-    }
-
-    public void onCircleClick() {
-        model.setCircle();
-    }
-
-    public void onPointSelection() {
-        model.setSelectOption(true);
-    }
-
-    private void selectOrCreateShape(double x, double y) {
-        if (selectOption.get())
-            model.collisionCheck(x, y);
-        else
-            createAndAddNewShape(x, y);
-    }
-
-    private void createAndAddNewShape(double x, double y) {
-        var newShape = returnNewShape(model.getShapeType(), cp.getValue(), x, y, model.getSizeText());
-        model.addToShapes(newShape);
-        model.addChangesToUndoList();
-    }
-
-    public void undoAction() {
-        model.undoLatestChange();
     }
 
     @FXML
@@ -177,17 +112,87 @@ public class Controller {
         }
     }
 
+    public void displayPosition(MouseEvent event) {
+        status.setText("X = " + event.getSceneX() + ". Y = " + event.getSceneY() + ".");
+    }
+
+    public void onCanvasClicked(MouseEvent e) {
+        double x = e.getX();
+        double y = e.getY();
+        System.out.println("Clicked on Canvas");
+        if (model.isSelectOption()) {
+            model.collisionCheck(x, y);
+        } else {
+            selectOrCreateShape(x, y);
+        }
+    }
+
+    public void clearCanvas() {
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setFill(Color.WHITE);
+        context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+    public void onClearCanvasClick(ActionEvent event) {
+        if (event.getSource().equals(clearCanvasButton)) {
+            clearCanvas();
+            System.out.println("Clicked on Clear Canvas button");
+        }
+    }
+
+    private void drawShapes(GraphicsContext context) {
+        clearCanvas();
+        for (var shape : model.getShapeObservableList()) {
+            shape.draw(context);
+        }
+    }
+
+    private Shape returnNewShape(ShapeType type, Color colorPick, double x, double y, double size) {
+        return BaseFactory.createShape(type, colorPick, x, y, size);
+    }
+
+    public void actionExit(ActionEvent event) {
+        Platform.exit();
+    }
+
+    public void actionRectangle() {
+        model.setRectangle();
+    }
+
+    public void onCircleClick() {
+        model.setCircle();
+    }
+
+    public void onSelectClick() {
+        model.setSelectOption(true);
+        System.out.println("Entered Select Mode");
+    }
+
+    private void selectOrCreateShape(double x, double y) {
+        if (selectOption.get())
+            model.collisionCheck(x, y);
+        else
+            addNewCreatedShape(x, y);
+    }
+
+    private void addNewCreatedShape(double x, double y) {
+        var newShape = returnNewShape(model.getShapeType(), cp.getValue(), x, y, model.getSizeText());
+        model.addToShapes(newShape);
+        model.addChangesToUndoList();
+    }
+
+    public void undoAction() {
+        model.undoLatestChange();
+        System.out.println("Clicked on Undo button");
+    }
     public void onChangeSize() {
         model.changeSizeOnSelectedShape();
     }
 
-    public void onSelectorAction() {
+    public void onSelectMode() {
         model.clearSelectedShapes();
     }
 
-    public void OnChangeColor() {
+    public void onChangeColor() {
         model.changeColorOnShape();
     }
-
-
 }

@@ -1,3 +1,5 @@
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import org.junit.jupiter.api.*;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,4 +26,5 @@ public class ExampleTest {
         Assertions.assertEquals(5, numbers.get(2));
         Assertions.assertEquals(7, numbers.get(3));  // Slow, one by one test.
     }
+
 }
