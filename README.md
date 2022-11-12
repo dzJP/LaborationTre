@@ -1,6 +1,8 @@
 # LaborationTre
 
 Info.
+
+
 Java 17/19 SDK + Maven library.
 
 Kör programmet från Application.
