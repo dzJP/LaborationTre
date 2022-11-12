@@ -28,7 +28,7 @@ import java.io.IOException;
 
 public class Controller {
     final static int CANVAS_WIDTH = 800;
-    final static int CANVAS_HEIGHT = 800;
+    final static int CANVAS_HEIGHT = 600;
 
     @FXML
     private final Model model;
