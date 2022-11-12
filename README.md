@@ -1,6 +1,15 @@
 # LaborationTre
 
-Kör programmet från Application.
-Vill du spara till fil så behöver du använda SwingFX dependency. Alla dependencies och moduler ska funka felfritt vid import (du kan behöva välja java 17/19 sdk  vid körning)
+***** Info *****
+Java 17/19 SDK.
 
-2 exempel på Test är gjorda i "Test" folder under src.
+Kör programmet från Application.
+FilSparning sker via SwingFX Snapshot.
+Vill du spara till fil så behöver du använda SwingFX dependency/module. 
+
+För att edita shapes, tryck på Select Mode. Välj color/size, klicka på canvas och sedan på Change Color/Size.
+
+// TODO: Bättre collision detection och bättre hantering på onButtonClicks
+
+
+![asdasd](https://user-images.githubusercontent.com/113700179/201470387-bdf7dd02-4241-42ab-9508-a891f16535c9.png)
