@@ -1,6 +1,9 @@
 package laboration.laborationjakobjavafx;
 
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import model.CollisionTester;
 import shapes.Shape;
 import shapes.Base;
 import shapes.ShapeType;
@@ -25,6 +28,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Controller {
     final static int CANVAS_WIDTH = 800;
@@ -86,7 +90,6 @@ public class Controller {
         model.updateReversedList();
     }
 
-
     @FXML
     public void handleClickSave() {
         FileChooser fileChooser = new FileChooser();
@@ -127,9 +130,12 @@ public class Controller {
     }
 
     public void clearCanvas() {
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.setFill(Color.WHITE);
+        var context = canvas.getGraphicsContext2D();
         context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        context.beginPath();
+        context.moveTo(0,0);
+        context.stroke();
+
     }
     public void onClearCanvasClick(ActionEvent event) {
         if (event.getSource().equals(clearCanvasButton)) {

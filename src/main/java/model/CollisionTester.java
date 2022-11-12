@@ -8,18 +8,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-
 import javafx.scene.shape.*;
 
 public class CollisionTester extends Application {
+
     private ArrayList<Shape> nodes;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void main(String[] args) { launch(args); }
 
-    @Override
-    public void start(Stage primaryStage) {
+    @Override public void start(Stage primaryStage) {
         primaryStage.setTitle("Drag circles around to see collisions");
         Group root = new Group();
         Scene scene = new Scene(root, 400, 400);
@@ -42,22 +39,19 @@ public class CollisionTester extends Application {
         final Delta dragDelta = new Delta();
 
         block.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                // record a delta distance for the drag and drop operation.dragDelta.x = block.getLayoutX() - mouseEvent.getSceneX();
+            @Override public void handle(MouseEvent mouseEvent) {
+                // record a delta distance for the drag and drop operation.        dragDelta.x = block.getLayoutX() - mouseEvent.getSceneX();
                 dragDelta.y = block.getLayoutY() - mouseEvent.getSceneY();
                 block.setCursor(Cursor.NONE);
             }
         });
         block.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+            @Override public void handle(MouseEvent mouseEvent) {
                 block.setCursor(Cursor.HAND);
             }
         });
         block.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+            @Override public void handle(MouseEvent mouseEvent) {
                 block.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
                 block.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
                 checkShapeIntersection(block);
@@ -85,9 +79,5 @@ public class CollisionTester extends Application {
         }
     }
 
-    class Delta {
-        double x, y;
-    }
+    class Delta { double x, y; }
 }
-
-

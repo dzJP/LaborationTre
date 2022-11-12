@@ -49,7 +49,7 @@ public class Model {
         for (var shape : shapeObservableList) {
             if (shape.collisionCheck(x,y))
                 System.out.println("Collision check");
-            selectedShapesContains(shape);
+                selectedShapesContains(shape);
         }
     }
 
