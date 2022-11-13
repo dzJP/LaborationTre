@@ -136,11 +136,9 @@ public class Controller {
     }
 
     public void clearCanvas(Canvas canvas) {
-        context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.setFill(Color.WHITE);
-        context.beginPath();
-        context.moveTo(0,0);
+        context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
     }
     public void onClearCanvasClick(ActionEvent event) {
@@ -162,7 +160,10 @@ public class Controller {
     }
 
     public void actionExit(ActionEvent event) {
-        Platform.exit();
+        if (event.getSource().equals(exitOption)) {
+            Platform.exit();
+            System.out.println("Exiting program..");
+        }
     }
 
     public void actionRectangle() {

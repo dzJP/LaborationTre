@@ -66,6 +66,7 @@ public class Model {
         if(reversedList.isEmpty())
             return;
         revertListChange();
+
     }
 
     public void revertListChange(){
@@ -74,6 +75,7 @@ public class Model {
             shapeObservableList.add(shape.copyList());
         if(reversedList.size() > 1){
             reversedList.remove(reversedList.size() - 1);
+
         }
     }
     public void updateReversedList() {
