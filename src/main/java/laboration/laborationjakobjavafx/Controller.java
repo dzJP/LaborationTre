@@ -1,9 +1,6 @@
 package laboration.laborationjakobjavafx;
 
-import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
-import model.CollisionTester;
 import shapes.Shape;
 import shapes.Base;
 import shapes.ShapeType;
@@ -28,12 +25,14 @@ import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Controller {
     final static int CANVAS_WIDTH = 800;
     final static int CANVAS_HEIGHT = 600;
-    int objectCount = 0;
+
+    public static int objectCount = 0;
+    @FXML
+    private Text count;
     @FXML
     private final Model model;
     @FXML
@@ -52,8 +51,6 @@ public class Controller {
     private TextField changeShapeSize;
     @FXML
     private Text status;
-    @FXML
-    private Text count;
     @FXML
     public Button circleButton;
     @FXML
@@ -88,10 +85,8 @@ public class Controller {
         selectionEditor.selectedProperty().bindBidirectional(model.selectionChoiceProperty());
         changeShapeSize.textProperty().bindBidirectional(model.sizeSelectProperty());
         selectOption.bindBidirectional(model.selectionChoiceProperty());
-        model.getShapeObservableList().addListener((ListChangeListener<Shape>) e -> drawShapes(context));
+        model.getShapeObservableList().addListener((ListChangeListener<Shape>) e -> drawShapesOnClick(context));
         model.updateReversedList();
-
-        count.setText(String.valueOf(objectCount));
 
         clearCanvasButton.setOnAction(
                 (event) -> {
@@ -156,11 +151,12 @@ public class Controller {
         }
     }
 
-    private void drawShapes(GraphicsContext context) {
-        clearCanvas(canvas);
+    private void drawShapesOnClick(GraphicsContext context) {
+            clearCanvas(canvas);
         for (var shape : model.getShapeObservableList()) {
             shape.draw(context);
-            objectCount++;
+
+
         }
     }
 
@@ -196,6 +192,7 @@ public class Controller {
         var newShape = returnNewShape(model.getShapeType(), cp.getValue(), x, y, model.getSizeText());
         model.addToShapes(newShape);
         model.updateReversedList();
+        count.setText(String.valueOf(objectCount));
     }
 
     public void revertEvent() {

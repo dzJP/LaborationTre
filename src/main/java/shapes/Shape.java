@@ -1,6 +1,5 @@
 package shapes;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.GraphicsContext;
@@ -87,8 +86,8 @@ public abstract class Shape {
     }
 
     public abstract boolean collisionCheck(double mouseX, double mouseY);
-    public abstract boolean insideShape(Position position);
-    public abstract boolean insideShape(double x, double y);
+    public abstract boolean insideObject(Position position);
+    public abstract boolean insideObject(double x, double y);
 
     @Override
     public boolean equals(Object o) {

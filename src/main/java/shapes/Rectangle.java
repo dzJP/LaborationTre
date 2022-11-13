@@ -34,7 +34,7 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public boolean insideShape(double x, double y){
+    public boolean insideObject(double x, double y){
         double coordinate = Math.sqrt(coordinateX(x,y) + coordinateY(x,y));
         return coordinate <= getSize();
     }
@@ -59,7 +59,7 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public boolean insideShape(Position position) {
+    public boolean insideObject(Position position) {
         boolean xInside = position.getPositionX() >= centerPoint().getPositionX() && position.getPositionX() <= centerPoint().getPositionX() + getSize();
         boolean yInside = position.getPositionY() >= centerPoint().getPositionY() && position.getPositionY() <= centerPoint().getPositionY() + getSize();
         return xInside && yInside;

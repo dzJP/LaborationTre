@@ -1,5 +1,6 @@
 package model;
 
+import laboration.laborationjakobjavafx.Controller;
 import shapes.Base;
 import shapes.Shape;
 import shapes.ShapeType;
@@ -100,6 +101,7 @@ public class Model {
     public void addToShapes(Shape shape){
         if(!(shape == null))
             this.shapeObservableList.add(shape);
+            Controller.objectCount++;
     }
     public void changeColorOnShape(){
         updateReversedList();

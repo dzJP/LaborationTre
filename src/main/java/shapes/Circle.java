@@ -18,13 +18,13 @@ public class Circle extends Shape{
         context.setFill(getBorderColor());
         context.setFill(getColor());
         context.fillOval(centerPoint().getPositionX(), centerPoint().getPositionY(), getSize(), getSize());
+
     }
 
     @Override
     public Shape copyList(){
         return new Circle(getColor(), getX(),getY(), getSize(),getShape());
     }
-
 
     @Override
     public String toString() {
@@ -33,7 +33,7 @@ public class Circle extends Shape{
 
 
     @Override
-    public boolean insideShape(double x, double y){
+    public boolean insideObject(double x, double y){
         double distance = Math.sqrt(coordinateX(x,y) + coordinateY(x,y));
         return distance <= getSize();
     }
@@ -53,12 +53,11 @@ public class Circle extends Shape{
         double distX = mouseX - getX();
         double distY = mouseY - getY();
         double distance = Math.sqrt((distX * distX) + (distY * distY));
-
         return distance <= getSize();
     }
 
     @Override
-    public boolean insideShape(Position position) {
+    public boolean insideObject(Position position) {
         boolean xInside = position.getPositionX() >= centerPoint().getPositionX() && position.getPositionX() <= centerPoint().getPositionX() + getSize();
         boolean yInside = position.getPositionY() >= centerPoint().getPositionY() && position.getPositionY() <= centerPoint().getPositionY() + getSize();
         return xInside && yInside;
