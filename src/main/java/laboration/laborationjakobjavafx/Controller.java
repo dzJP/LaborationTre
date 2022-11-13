@@ -29,7 +29,6 @@ import java.io.IOException;
 public class Controller {
     final static int CANVAS_WIDTH = 800;
     final static int CANVAS_HEIGHT = 600;
-
     public static int objectCount = 0;
     @FXML
     private Text count;
@@ -155,8 +154,6 @@ public class Controller {
             clearCanvas(canvas);
         for (var shape : model.getShapeObservableList()) {
             shape.draw(context);
-
-
         }
     }
 

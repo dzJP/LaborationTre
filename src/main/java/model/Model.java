@@ -61,21 +61,7 @@ public class Model {
         }
     }
 
-    public void clearSelected(){
-        for(var shape : shapeObservableList){
-            shape.setBorderColor(Color.YELLOW);
-        }
-        selectedShapes.clear();
-    }
-    public void selectedShapesContains(Shape selectedShape) {
-        if (selectedShapes.contains(selectedShape)) {
-            selectedShape.setBorderColor(Color.GREEN);
-            selectedShapes.clear();
-        } else {
-            selectedShape.setBorderColor(Color.RED);
-            selectedShapes.add(selectedShape);
-        }
-    }
+
     public void revertLatest(){
         if(reversedList.isEmpty())
             return;
@@ -103,6 +89,23 @@ public class Model {
             this.shapeObservableList.add(shape);
             Controller.objectCount++;
     }
+
+    public void clearSelected(){
+        for(var shape : shapeObservableList){
+            shape.setBorderColor(Color.RED);
+        }
+        selectedShapes.clear();
+    }
+    public void selectedShapesContains(Shape selectedShape) {
+        if (selectedShapes.contains(selectedShape)) {
+            selectedShape.setBorderColor(Color.BLUE);
+            selectedShapes.clear();
+        } else {
+            selectedShape.setBorderColor(Color.GREEN);
+            selectedShapes.add(selectedShape);
+        }
+    }
+
     public void changeColorOnShape(){
         updateReversedList();
         for(var shape : selectedShapes){
