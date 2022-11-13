@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class Controller {
     final static int CANVAS_WIDTH = 800;
     final static int CANVAS_HEIGHT = 600;
-
+    int objectCount = 0;
     @FXML
     private final Model model;
     @FXML
@@ -52,6 +52,8 @@ public class Controller {
     private TextField changeShapeSize;
     @FXML
     private Text status;
+    @FXML
+    private Text count;
     @FXML
     public Button circleButton;
     @FXML
@@ -88,6 +90,16 @@ public class Controller {
         selectOption.bindBidirectional(model.selectionChoiceProperty());
         model.getShapeObservableList().addListener((ListChangeListener<Shape>) e -> drawShapes(context));
         model.updateReversedList();
+
+        count.setText(String.valueOf(objectCount));
+
+        clearCanvasButton.setOnAction(
+                (event) -> {
+                clearCanvas(canvas);
+                objectCount = 0;
+                count.setText(String.valueOf(objectCount));
+                }
+        );
     }
 
     @FXML
@@ -129,25 +141,26 @@ public class Controller {
         }
     }
 
-    public void clearCanvas() {
-        var context = canvas.getGraphicsContext2D();
+    public void clearCanvas(Canvas canvas) {
         context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setFill(Color.WHITE);
         context.beginPath();
         context.moveTo(0,0);
-        context.stroke();
 
     }
     public void onClearCanvasClick(ActionEvent event) {
         if (event.getSource().equals(clearCanvasButton)) {
-            clearCanvas();
+            clearCanvas(canvas);
             System.out.println("Clicked on Clear Canvas button");
         }
     }
 
     private void drawShapes(GraphicsContext context) {
-        clearCanvas();
+        clearCanvas(canvas);
         for (var shape : model.getShapeObservableList()) {
             shape.draw(context);
+            objectCount++;
         }
     }
 
