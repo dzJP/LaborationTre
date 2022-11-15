@@ -4,7 +4,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.Position;
 
-import java.util.ArrayList;
 
 public class Circle extends Shape{
 

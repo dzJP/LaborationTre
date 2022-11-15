@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
-import javafx.embed.swing.SwingFXUtils;
+//import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -96,30 +96,30 @@ public class Controller {
         );
     }
 
-    @FXML
-    public void handleClickSave() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save File Application");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("png files (*.png)", "*.png"),
-                new FileChooser.ExtensionFilter("All files", "*.*")
-        );
-        File file = fileChooser.showSaveDialog(canvas.getScene().getWindow());
-        if (file != null) {
-            try {
-                WritableImage writableImage = new WritableImage(CANVAS_WIDTH, CANVAS_HEIGHT);
-                canvas.snapshot(null, writableImage);
-                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
-                ImageIO.write(renderedImage, "png", file);
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Error");
-            }
-            System.out.println(file.getPath());
-        } else {
-            System.out.println("Cancelled");
-        }
-    }
+//    @FXML
+//    public void handleClickSave() {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Save File Application");
+//        fileChooser.getExtensionFilters().addAll(
+//                new FileChooser.ExtensionFilter("png files (*.png)", "*.png"),
+//                new FileChooser.ExtensionFilter("All files", "*.*")
+//        );
+//        File file = fileChooser.showSaveDialog(canvas.getScene().getWindow());
+//        if (file != null) {
+//            try {
+//                WritableImage writableImage = new WritableImage(CANVAS_WIDTH, CANVAS_HEIGHT);
+//                canvas.snapshot(null, writableImage);
+//                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+//                ImageIO.write(renderedImage, "png", file);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                System.out.println("Error");
+//            }
+//            System.out.println(file.getPath());
+//        } else {
+//            System.out.println("Cancelled");
+//        }
+//    }
 
     public void displayPosition(MouseEvent event) {
         status.setText("X = " + event.getSceneX() + ". Y = " + event.getSceneY() + ".");

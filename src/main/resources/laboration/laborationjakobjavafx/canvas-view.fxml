@@ -13,7 +13,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <MenuItem fx:id="exitOption" mnemonicParsing="false" onAction="#actionExit" text="Exit" />
-                    <MenuItem fx:id="SaveOption" mnemonicParsing="false" onAction="#handleClickSave" text="Save.." />
+<!--                    <MenuItem fx:id="SaveOption" mnemonicParsing="false" onAction="#handleClickSave" text="Save.." />-->
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <MenuItem mnemonicParsing="false" text="Delete" />
