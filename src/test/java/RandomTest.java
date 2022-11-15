@@ -1,7 +1,9 @@
 import javafx.scene.paint.Color;
 import model.Model;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import shapes.Circle;
+import shapes.Rectangle;
 import shapes.Shape;
 import shapes.ShapeType;
 
@@ -14,45 +16,48 @@ public class RandomTest {
 
     @Test
     void shouldShowSimpleAssertion() {
-        Shape shape = new Circle(Color.RED, 20, 20, 50, ShapeType.CIRCLE);
-        Model m = new Model();
-        m.addToShapes(shape);
-        Assertions.assertEquals(1, m.getShapeObservableList().size());
+        Shape shape = new Circle(Color.RED, 50, 50, 50, ShapeType.CIRCLE);
+        Model model = new Model();
+        model.addToShapes(shape);
+        assertEquals(1, model.getShapeObservableList().size()); // will work
+//      assertEquals(0, model.getShapeObservableList().size()); // will not work
     }
 
     @Test
-    @DisplayName("Should check if collision on mouse click on a shape")
-    void shouldCheckIfCollision() {
-        Model model = new Model();
-        for (var shape : model.getShapeObservableList()) {
-            if (shape.collisionCheck(shape.getX(), shape.getY()))
-                model.selectedShapesContains(shape);
-            System.out.println("Should be a collision here");
-            Assertions.assertEquals(1, model.getShapeObservableList().size());
-        }
+    @DisplayName("Should check if collision method works properly")
+    void shouldCheckIfCollisionMethodWorksProperly() {
+        Shape shape = new Circle(Color.WHITE, 20, 20, 20, ShapeType.CIRCLE); // shape with x,y pos. 20
+        Model model = new Model(); // new model
+        model.addToShapes(shape); // add shape
+        assertTrue(shape.collisionCheck(20, 20)); // this is true = collision
+      //assertTrue(shape.collisionCheck(300,300));               // this is not true = no collision
     }
 
     @Test
-    @DisplayName("Should undo the latest action after pressing undo button")
-    void shouldUndoTheLatestActionAfterPressingUndoButton() {
-        Model model = new Model();
-        if (model.reversedList.isEmpty())
-            return;
-        model.revertLatest();
-        Assertions.assertEquals(1, model.getShapeObservableList().size());
+    @DisplayName("Should check and verify that the revertLatest() method works correctly")
+    void shouldCheckAndVerifyThatTheRevertLatestMethodWorksCorrectly() {
+        Model model = new Model(); // new model so we can call model
+        Shape shape = new Circle(Color.PALEGREEN, 40, 40, 30, ShapeType.CIRCLE); // creating a circle shape
+        model.addToShapes(shape); // adding shape to model list
+        model.revertLatest(); // revert latest change
+        assertEquals(1, model.getShapeObservableList().size());
+        //assertEquals(0, model.getShapeObservableList().size());
     }
+
 
     @Test
-    @DisplayName("Should change color on shape after selecting a shape")
-    void shouldChangeColorOnShapeAfterSelectingAShape() {
-        Model model = new Model();
-        model.updateReversedList();
-        for (var shape : model.getSelectedShape()) {
-            shape.setColor(model.getSelectColorPicker());
-            Assertions.assertEquals(1, model.getShapeObservableList().size());
-        }
+    @DisplayName("Should call updateReversedList to add existing shapes to a temporary list")
+    void shouldCallUpdateReversedListToAddExistingShapesToATemporaryList() {
+        Model model = new Model(); // new model so we can call model
+        Shape circleShape = new Circle(Color.BLUEVIOLET, 70,70,50,ShapeType.CIRCLE); // creating a circle shape
+        Shape rectangleShape = new Rectangle(Color.GRAY, 40,40,40,ShapeType.RECTANGLE);
+        model.addToShapes(circleShape);
+        model.addToShapes(rectangleShape);
+        model.updateReversedList(); // calling method to copy and add to a temporary list
+        assertEquals(2,model.getShapeObservableList().size());
+        //assertEquals(1,model.getShapeObservableList().size());
     }
-
+}
 
 //    @Test
 //    @DisplayName("Should check all items in the list")
@@ -69,4 +74,4 @@ public class RandomTest {
 //        Assertions.assertEquals(5, numbers.get(2));
 //        Assertions.assertEquals(7, numbers.get(3));
 //    }
-}
+//}
